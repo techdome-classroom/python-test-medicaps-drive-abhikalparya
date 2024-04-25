@@ -1,13 +1,13 @@
 class Solution(object):
     def isValid(self, s):
         stack = []
-        bracket_mapping = {')': '(', '}': '{', ']': '['}
+        brackets = {')': '(', '}': '{', ']': '['}
 
         for char in s:
-            if char in bracket_mapping.values():
+            if char in brackets.values():
                 stack.append(char)
-            elif char in bracket_mapping.keys():
-                if not stack or stack.pop() != bracket_mapping[char]:
+            elif char in brackets.keys():
+                if not stack or stack.pop() != brackets[char]:
                     return False
             else:
                 return False

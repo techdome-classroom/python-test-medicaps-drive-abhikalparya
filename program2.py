@@ -1,13 +1,24 @@
 class Solution(object):
     def romanToInt(self, s):
-        roman_values = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
-        result = 0
+        roman_to_int_mapping = {
+            'I': 1,
+            'V': 5,
+            'X': 10,
+            'L': 50,
+            'C': 100,
+            'D': 500,
+            'M': 1000
+        }
 
-        for i in range(len(s)):
-            # If current value is less than the next value, subtract it
-            if i < len(s) - 1 and roman_values[s[i]] < roman_values[s[i + 1]]:
-                result -= roman_values[s[i]]
+        result = 0
+        prev_value = 0
+
+        for char in reversed(s):
+            value = roman_to_int_mapping[char]
+            if value < prev_value:
+                result -= value
             else:
-                result += roman_values[s[i]]
+                result += value
+            prev_value = value
 
         return result
